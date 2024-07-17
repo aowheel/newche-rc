@@ -1,7 +1,7 @@
-export default function Home() {
+const Page = async () => {
   return (
-    <main>
-      <div>Hello world!</div>
-    </main>
+    <></>
   );
 }
+
+export default Page;
