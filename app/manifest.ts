@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Newche | An app for SCI Cycle-ball Team',
     short_name: 'Newche',
     description: 'Newche is an app that makes it easy to share SCI Cycle-ball Team schedule.',
-    start_url: '/',
+    start_url: '/internal',
     display: 'standalone',
     background_color: '#000000',
     theme_color: '#000000',

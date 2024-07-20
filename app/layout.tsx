@@ -17,16 +17,16 @@ export default function Layout({
 }>) {
   return (
     <html lang="ja">
-      <body className={notoSansJP.className}>
+      <body className={`min-h-screen flex flex-col justify-between ${notoSansJP.className} bg-slate-900`}>
         <header
-          className={`${orbitron.className} px-4 text-3xl text-teal-300`}
+          className={`${orbitron.className} px-4 text-4xl text-teal-300`}
         >
           <Link href="/">Newche</Link>
         </header>
         <Suspense fallback={<Loading />}>
-          <main className="min-h-screen flex flex-col items-center justify-center gap-y-4 p-4" >{children}</main>
+          <main className="flex flex-col items-center justify-center gap-y-4 p-4" >{children}</main>
         </Suspense>
-        <footer className={`${inter.className} px-4 py-2 flex flex-wrap justify-around gap-x-8 border-t border-slate-600 text-slate-400 text-sm`}>
+        <footer className={`${inter.className} px-4 py-2 flex flex-wrap justify-around gap-x-8 gap-y-2 border-t border-slate-600 text-slate-400`}>
           <Link href="/">Home</Link>
           <Link href="/internal">Schedule</Link>
           <Link href="/signin">Sign in</Link>

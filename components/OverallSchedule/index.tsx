@@ -41,8 +41,8 @@ const OverallSchedule = async ({start, end}: { start?: string, end?: string }) =
 
   return (
     <>
-      <div className="p-2 rounded bg-white">
-        <table className="text-slate-700 text-lg">
+      <div className="w-full p-2 rounded bg-white">
+        <table className="w-full text-slate-700 text-lg">
           <caption className={`${inter.className} p-2 bg-slate-50 text-xl`}>{caption}</caption>
           <thead>
             <tr className="text-sm">

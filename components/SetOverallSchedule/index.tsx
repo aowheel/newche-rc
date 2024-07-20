@@ -36,14 +36,14 @@ const SetOverallSchedule = () => {
         <button type="button" className="px-2 rounded bg-white disabled:bg-opacity-75" onClick={() => {
           setStartIndex((startIndex+1)%startOption.length);
         }}>Start</button>
-        <input type="time" id="start" name="start" defaultValue={startOption[startIndex]} />
+        <input type="time" id="start" name="start" value={startOption[startIndex]} />
       </div>
       
       <div className="flex gap-x-2">
         <button type="button" className="px-2 rounded bg-white disabled:bg-opacity-75" onClick={() => {
           setEndIndex((endIndex+1)%endOption.length);
         }}>End</button>
-        <input type="time" id="end" name="end" defaultValue={endOption[endIndex]} />
+        <input type="time" id="end" name="end" value={endOption[endIndex]} />
       </div>
       
       <input type="text" name="description" className="px-1"></input>
