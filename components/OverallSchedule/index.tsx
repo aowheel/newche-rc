@@ -1,5 +1,6 @@
 "use server";
 
+import dateFormat from "@/lib/date-format";
 import { inter } from "@/lib/fonts";
 import prisma from "@/lib/prisma";
 import clsx from "clsx";
@@ -32,6 +33,29 @@ const OverallSchedule = async ({start, end}: { start?: string, end?: string }) =
     }
   });
 
+  const dateOption = {
+    month: "numeric",
+    day: "numeric",
+    weekday: "short"
+  };
+  const timeOption =  {
+    hour: "numeric",
+    minute: "2-digit"
+  }
+  const formattedSchedule = []
+  for (let i = 0; i <= schedule.length; i++) {
+    const formattedDate = dateFormat(schedule[i]?.date, dateOption);
+    const formattedStart = dateFormat(schedule[i]?.start || undefined, timeOption);
+    const formattedEnd = dateFormat(schedule[i]?.end || undefined, timeOption);
+    formattedSchedule[i] = {
+      type: schedule[i]?.type,
+      date: formattedDate,
+      start: formattedStart,
+      end: formattedEnd,
+      description: schedule[i]?.description
+    }
+  }
+
   let caption = "UP TO DATE";
   if (restricted) {
     caption = `${splitStart?.[0]} / ${splitStart?.[1]} -> ${splitEnd?.[0]} / ${splitEnd?.[1]}`
@@ -52,13 +76,13 @@ const OverallSchedule = async ({start, end}: { start?: string, end?: string }) =
             </tr>
           </thead>
           <tbody>
-            {schedule?.map((item, index) => {
+            {formattedSchedule?.map((item, index) => {
               return (
                 <tr key={index} className="odd:bg-slate-50 even:bg-white">
-                  <td>{item.date.getMonth() + 1}/{item.date.getDate()} ({weekday[item.date.getDay()]})</td>
-                  <td>{item?.start?.getHours()}:{("0" + item?.start?.getMinutes()).slice(-2)}</td>
-                  <td>{item?.end?.getHours()}:{("0" + item?.end?.getMinutes()).slice(-2)}</td>
-                  <td className={clsx({ "p-0": !item?.description })}>{item?.description}</td>
+                  <td>{item.date}</td>
+                  <td>{item.start}</td>
+                  <td>{item.end}</td>
+                  <td className={clsx({ "p-0": !item.description })}>{item.description}</td>
                 </tr>
               );
             })}

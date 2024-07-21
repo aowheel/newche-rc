@@ -9,12 +9,6 @@ const SetOverallSchedule = () => {
   date.setMonth(date.getMonth() + 1);
   const defaultDate = date.toISOString().split('T')[0];
 
-  const startOption = ["17:00", "18:00", "09:00", "15:30", "17:15", undefined];
-  const [startIndex, setStartIndex] = useState(0);
-
-  const endOption = ["21:00", "12:15", "19:00", undefined];
-  const [endIndex, setEndIndex] = useState(0);
-
   const initialState: {
     ok?: string, error?: string
   } = {};
@@ -33,20 +27,16 @@ const SetOverallSchedule = () => {
       </select>
 
       <div className="flex gap-x-2">
-        <button type="button" className="px-2 rounded bg-white disabled:bg-opacity-75" onClick={() => {
-          setStartIndex((startIndex+1)%startOption.length);
-        }}>Start</button>
-        <input type="time" id="start" name="start" value={startOption[startIndex]} />
+        <label htmlFor="start">Start</label>
+        <input type="time" id="start" name="start" />
       </div>
       
       <div className="flex gap-x-2">
-        <button type="button" className="px-2 rounded bg-white disabled:bg-opacity-75" onClick={() => {
-          setEndIndex((endIndex+1)%endOption.length);
-        }}>End</button>
-        <input type="time" id="end" name="end" value={endOption[endIndex]} />
+        <label htmlFor="end">End</label>
+        <input type="time" id="end" name="end" />
       </div>
       
-      <input type="text" name="description" className="px-1"></input>
+      <input type="text" name="description" className="px-1" />
 
       {!!message.ok && <p>{message.ok}</p>}
       {!!message.error && <p>{message.error}</p>}
