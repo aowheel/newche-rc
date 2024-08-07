@@ -11,8 +11,6 @@ const SignOut = async () => {
       action={async () => {
         "use server";
         try {
-          cookies().delete("displayName");
-          cookies().delete("period");
           await signOut();
         } catch(error) {
           throw error;

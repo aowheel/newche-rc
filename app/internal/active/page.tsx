@@ -2,7 +2,7 @@ import Loading from "@/app/loading";
 import { auth } from "@/auth";
 import { LoadingDots } from "@/components/Common";
 import OverallSchedule from "@/components/OverallSchedule";
-import SetMode from "@/components/SetMode";
+import { ChangeMode, FinishEditMode } from "@/components/SetMode";
 import SetMonth from "@/components/SetMonth";
 import SevenDaysSchedule from "@/components/SevenDaysSchedule";
 import { Suspense } from "react";
@@ -29,7 +29,7 @@ const Page = async ({ searchParams }: {
           <div className="flex items-center justify-center rounded-lg bg-white">
             <FaEarlybirds className="text-slate-900 text-4xl" />
           </div>
-          <Suspense key={month} fallback={<Loading />}>
+          <Suspense fallback={<Loading />}>
             <SevenDaysSchedule userId={id} />
           </Suspense>
         </div>
@@ -50,14 +50,11 @@ const Page = async ({ searchParams }: {
             <OverallSchedule withAttendees={true} userId={id} month={month} mode={mode} />
           </Suspense>
 
-          <SetMode />
+          <ChangeMode />
         </div>
       </div>
 
-      {mode === "edit" &&
-      <div className="fixed w-screen bottom-0 flex items-center justify-center p-2 bg-teal-300 bg-opacity-75">
-        <span className="text-white">選択中<LoadingDots /></span>
-      </div>}
+      {mode === "edit" && <FinishEditMode />}
       
       <SetMonth />
     </>

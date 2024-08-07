@@ -11,7 +11,7 @@ export const LoadingCircle = () => {
   );
 }
 
-export const LoadingDots = () => {
+export const LoadingDots = ({ text }: { text: string }) => {
   const [dotCount, setDotCount] = useState(0);
 
   useEffect(() => {
@@ -21,5 +21,10 @@ export const LoadingDots = () => {
     return () => clearInterval(interval)
   }, []);
 
-  return <span>{".".repeat(dotCount)}</span>;
+  return (
+    <span className="flex justify-center gap-x-4">
+      <span>{text}</span>
+      {Array(dotCount).fill(<span>.</span>).map((item, index) => (<span key={index}>{item}</span>))}
+    </span>
+  );
 }

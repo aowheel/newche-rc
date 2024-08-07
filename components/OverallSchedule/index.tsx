@@ -14,15 +14,15 @@ const AttendeesList = async ({ scheduleId }: { scheduleId: number }) => {
 
   return (
     <>
-      <td className="w-72 overflow-x-auto flex gap-x-2">
+      <td className="w-72 overflow-x-auto flex gap-x-2 items-center">
       {attendees?.map((item, index) => (
-        <span key={index} className="flex gap-x-1">
+        <span key={index} className="flex flex-shrink-0 gap-x-1">
           <Image
             src={item.image || ""}
             alt="icon"
             width={28}
             height={28}
-            className="rounded-full"
+            className="rounded-full w-7 h-7"
           />
           <span>{item.displayName}</span>
         </span>

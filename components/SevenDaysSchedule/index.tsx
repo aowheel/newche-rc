@@ -30,19 +30,19 @@ const Attendees = async ({ scheduleId }: { scheduleId: number }) => {
         return (
           <tr key={index}>
             <th>{item.period}期</th>
-            <td className="flex gap-x-2">
+            <td className="overflow-x-auto flex gap-x-2 items-center">
               {item.others?.map((item, index) => {
                 return (
-                  <div key={index} className="flex gap-x-1">
+                  <span key={index} className="flex flex-shrink-0 gap-x-1">
                     <Image
                       src={item.image || ""}
                       alt="icon"
                       width={28}
                       height={28}
-                      className="rounded-full"
+                      className="rounded-full w-7 h-7"
                     />
                     <span>{item.displayName}</span>
-                  </div>
+                  </span>
                 );
               })}
             </td>

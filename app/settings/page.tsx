@@ -21,7 +21,7 @@ const Page = async () => {
       </>
     );
   }
-  const displayName = cookies().get("displayName")
+  const displayName = cookies().get("displayName");
   if (!displayName) {
     return (
       <>

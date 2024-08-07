@@ -11,7 +11,7 @@ const SetAttendance = ({ userId, scheduleId, attendance }: { userId: string; sch
 
   return (
     <>
-      <td className={clsx("flex justify-center gap-x-2 text-3xl", {"animate-pulse": isPending})}>
+      <td className={clsx("flex justify-center gap-x-2 text-4xl", {"animate-pulse": isPending})}>
         <input type="radio" id={`yes-${scheduleId}`} name={`${scheduleId}`} checked={attendanceState === "yes"} 
         onChange={() => {
           startTransition(() => {
