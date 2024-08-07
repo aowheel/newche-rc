@@ -2,7 +2,6 @@ import { auth } from "@/auth";
 import SetUserDetails from "@/components/SetUserDetails";
 import SignIn from "@/components/SignIn";
 import SignOut from "@/components/SignOut";
-import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { FaCheck } from "react-icons/fa6";
 import { IoInformationCircleOutline } from "react-icons/io5";

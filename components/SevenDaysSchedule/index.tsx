@@ -63,7 +63,7 @@ const SevenDaysSchedule = async ({ userId }: { userId: string }) => {
   return (
     schedule?.map((item, index) => {
       return (
-        <div className="w-full overflow-x-auto p-2 rounded-lg border-2">
+        <div key={index} className="w-full overflow-x-auto p-2 rounded-lg border-2">
           <table key={index} className="w-full text-white text-lg">
             <caption className="w-full p-2 text-xl">
               <span className="flex gap-x-1">
