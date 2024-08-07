@@ -1,8 +1,6 @@
 "use client";
 
-import clsx  from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useTransition } from "react";
 import { FaRegCalendar, FaRegCalendarCheck, FaXmark } from "react-icons/fa6";
 import { MdDoubleArrow } from "react-icons/md";
 import { LoadingDots } from "../Common";
@@ -14,8 +12,6 @@ export const ChangeMode = () => {
 
   const pathname = usePathname();
   const { push } = useRouter();
-
-  const [isPending, startTransition] = useTransition();
 
   const handleSearch = () => {
     if (isEditMode) {
@@ -29,10 +25,8 @@ export const ChangeMode = () => {
   return (
     <button
       type="button"
-      onClick={() => startTransition(handleSearch)}
-      className={clsx("m-1 p-2 rounded border-double outline outline-offset-2 outline-2 outline-white transition-colors duration-1000 flex justify-center gap-x-4 bg-white text-2xl", {
-        "outline-teal-300": isPending
-      })}
+      onClick={handleSearch}
+      className="m-1 p-2 rounded border-double outline outline-offset-2 outline-2 outline-white flex justify-center gap-x-4 bg-white text-2xl"
     >
       {!isEditMode ? <>
         <FaRegCalendar className="text-slate-900" />

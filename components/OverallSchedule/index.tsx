@@ -125,7 +125,7 @@ const OverallSchedule = async ({ withAttendees, userId, month, mode }: {
               "bg-yellow-50": item.type === "championship",
               "bg-teal-50": item.type === "event"
             })}>
-              <td className="px-8 py-0 text-sm" colSpan={4}>
+              <td className="h-auto px-8 py-0" colSpan={4}>
                 <span className="flex items-center gap-x-2">
                   <MdSubdirectoryArrowRight />
                   <span>{item.description}</span>
