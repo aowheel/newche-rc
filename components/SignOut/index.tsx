@@ -1,3 +1,5 @@
+"use server";
+
 import { signOut } from "@/auth";
 import { inter } from "@/lib/fonts";
 import { cookies } from "next/headers";

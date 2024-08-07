@@ -9,15 +9,18 @@ const Page = async () => {
   if (session?.user?.email !== "aoimakino2003@gmail.com") {
     return (
       <>
-        <FaUserSlash className="text-5xl text-slate-900" />
-        <p className={`${inter.className} text-slate-900`}>You are not authorized to access this page.</p>
+        <FaUserSlash className="text-5xl text-slate-800" />
+        <p className={`${inter.className} text-slate-800`}>You are not authorized to access this page.</p>
       </>
     );
   }
+  const date = new Date();
+  date.setMonth(date.getMonth() + 1);
+  const defaultDate = date.toISOString().split('T')[0];
   return (
     <>
-      <SetOverallSchedule />
-      <DeleteOverallSchedule />
+      <SetOverallSchedule date={defaultDate} />
+      <DeleteOverallSchedule date={defaultDate} />
     </>
   );
 }

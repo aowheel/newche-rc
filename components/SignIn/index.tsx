@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import handleSignIn from "./action";
 import { useActionState } from "react";
 import clsx from "clsx";
-import { PendingSvg } from "../UI";
+import { LoadingCircle } from "../Common";
 
 const SignIn = () => {
   const [dummy, formAction, isPending] = useActionState(handleSignIn, undefined);
@@ -21,7 +21,7 @@ const SignIn = () => {
           }
           {
             isPending &&
-            <PendingSvg />
+            <LoadingCircle />
           }
           <label>Sign in with Google</label>
         </button>

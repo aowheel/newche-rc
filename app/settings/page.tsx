@@ -1,15 +1,15 @@
 import { auth } from "@/auth";
 import SetUserDetails from "@/components/SetUserDetails";
 import SignIn from "@/components/SignIn";
+import SignOut from "@/components/SignOut";
+import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
-import Link from "next/link";
-import { FaLightbulb } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { MdLogin } from "react-icons/md";
 
 const Page = async () => {
   const session = await auth();
-  const details = cookies().has("displayName");
   if (!session) {
     return (
       <>
@@ -22,7 +22,8 @@ const Page = async () => {
       </>
     );
   }
-  else if (!details) {
+  const displayName = cookies().get("displayName")
+  if (!displayName) {
     return (
       <>
         <MdLogin className="text-5xl text-white" />
@@ -30,18 +31,14 @@ const Page = async () => {
       </>
     );
   }
-  else {
-    return (
-      <>
-        <FaLightbulb className="text-yellow-200 text-4xl" />
-        <p className="text-white">サインイン済みです。</p>
-        <p className="text-white">詳細の変更、サインアウトは
-          <Link href="/internal/settings" className="underline text-teal-300">こちら</Link>
-        。
-        </p>
-      </>
-    );
-  }
+  return (
+    <>
+      <FaCheck className="text-yellow-200 text-4xl" />
+      <p className="text-white">サインイン済みです。</p>
+      <SetUserDetails isFirst={false} />
+      <SignOut />
+    </>
+  );
 }
 
 export default Page;

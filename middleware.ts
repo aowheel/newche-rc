@@ -6,7 +6,7 @@ import { z } from "zod";
 export default NextAuth(authConfig).auth;
 
 export async function middleware(request: NextRequest) {
-  const youngestPeriod = 57;  // 1年生の期(毎年度変更)
+  const youngestPeriod = 58;  // 1年生の期(毎年度変更)
 
   const url = request.nextUrl;
   const response = NextResponse.next();

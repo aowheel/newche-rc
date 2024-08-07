@@ -7,19 +7,16 @@ const Page = async ({
   searchParams,
 }: {
   searchParams?: {
-    start?: string;
-    end?: string;
+    month?: string;
   };
 }) => {
-  const start = searchParams?.start;
-  const end = searchParams?.end;
-  const startKey = start || "";
-  const endKey = end || ""
+  const month = searchParams?.month;
+  const monthKey = month || "";
 
   return (
     <>
-      <Suspense key={startKey + endKey} fallback={<Loading />}>
-        <OverallSchedule start={start} end={end} />
+      <Suspense key={monthKey} fallback={<Loading />}>
+        <OverallSchedule withAttendees={false} month={month} />
       </Suspense>
       <SetMonth />
     </>

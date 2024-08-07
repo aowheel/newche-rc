@@ -3,11 +3,16 @@
 import { useActionState } from "react";
 import handleUserDetails from "./action";
 import { IoMdAlert } from "react-icons/io";
-import { PendingSvg } from "../UI";
+import { LoadingCircle } from "../Common";
 import { FaCheckCircle } from "react-icons/fa";
 
 const SetUserDetails = ({ isFirst }: { isFirst: boolean }) => {
-  const [state, formAction, isPending] = useActionState(handleUserDetails, { isFirst: isFirst });
+  const initialState: {
+    isFirst: boolean;
+    ok?: string;
+    error?: string;
+  } = { isFirst: isFirst };
+  const [state, formAction, isPending] = useActionState(handleUserDetails, initialState);
   return (
     <>
       <form
@@ -20,20 +25,20 @@ const SetUserDetails = ({ isFirst }: { isFirst: boolean }) => {
           !!state.ok &&
           <div className="flex items-center gap-x-2 text-green-400">
             <FaCheckCircle className="text-xl" />
-            <p className="">{state.ok}</p>
+            <p>{state.ok}</p>
           </div>
         }
         {
           !!state.error &&
           <div className="flex items-center gap-x-2 text-yellow-400">
             <IoMdAlert className="text-xl" />
-            <p className="">{state.error}</p>
+            <p>{state.error}</p>
           </div>
         }
-        <button type="submit" className="flex items-center justify-center gap-x-2 px-4 py-2 rounded-lg bg-slate-400 text-white" disabled={isPending}>
+        <button type="submit" className="flex items-center justify-center gap-x-2 px-4 py-2 rounded-lg bg-slate-800 text-white" disabled={isPending}>
           {
             isPending &&
-            <PendingSvg />
+            <LoadingCircle />
           }
           <label>
             { isFirst && <>詳細を登録</> }

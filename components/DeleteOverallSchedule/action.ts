@@ -17,13 +17,11 @@ export default async function deleteOverallSchedule(prevState: { ok?: string, er
       }
     });
     if (!schedule) return { error: "No such data." };
+    await prisma.attendance.deleteMany({
+      where: { scheduleId: schedule.id },
+    });
     await prisma.schedule.delete({
-      where: {
-        date: ISODate.data
-      },
-      select: {
-        id: true
-      }
+      where: { id: schedule.id }
     });
     return { ok: `Success! -> DELETED ${schedule.id}` };
   }

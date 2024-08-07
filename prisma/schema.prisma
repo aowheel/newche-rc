@@ -21,7 +21,6 @@ model User {
   displayName String?
   period      Int?
   schedules   Attendance[]
-  earliests   Schedule[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -35,8 +34,6 @@ model Schedule {
   end         DateTime?
   description String?
   users       Attendance[]
-  authority   User?        @relation(fields: [authorityId], references: [id])
-  authorityId String?
 }
 
 model Attendance {
@@ -44,9 +41,21 @@ model Attendance {
   userId     String
   schedule   Schedule @relation(fields: [scheduleId], references:[id])
   scheduleId Int
-  attendance Boolean?
+  attendance String
+  comments   Comment[]
   
   @@id([userId, scheduleId])
+}
+
+model Comment {
+  id          Int        @id @default(autoincrement())
+  commenter   Attendance @relation(fields: [userId, scheduleId], references: [userId, scheduleId])
+  userId      String
+  scheduleId  Int
+  comment     String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Account {

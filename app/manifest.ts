@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Newche is an app that makes it easy to share SCI Cycle-ball Team schedule.',
     start_url: '/internal',
     display: 'standalone',
-    background_color: '#000000',
-    theme_color: '#000000',
+    background_color: '#0f172a',
+    theme_color: '#5eead4',
     icons: [
       {
         src: '/android-chrome-192x192.png',

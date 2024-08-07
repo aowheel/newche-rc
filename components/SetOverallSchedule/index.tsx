@@ -1,14 +1,10 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { useActionState } from "react";
 import handleOverallSchedule from "./action";
 import { inter } from "@/lib/fonts";
 
-const SetOverallSchedule = () => {
-  const date = new Date();
-  date.setMonth(date.getMonth() + 1);
-  const defaultDate = date.toISOString().split('T')[0];
-
+const SetOverallSchedule = ({ date }: { date: string }) => {
   const initialState: {
     ok?: string, error?: string
   } = {};
@@ -18,7 +14,7 @@ const SetOverallSchedule = () => {
     <form action={formAction} className={`w-full ${inter.className} p-4 flex flex-col items-center gap-y-4 rounded-lg bg-slate-200 text-slate-700`}>
       <p className="text-2xl">Create or Update</p>
 
-      <input type="date" name="date" defaultValue={defaultDate} required />
+      <input type="date" name="date" defaultValue={date} required />
 
       <select name="type">
         <option>default</option>

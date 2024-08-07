@@ -19,4 +19,14 @@ body {
 th, td {
   padding: 8px;
   text-align: center;
+  white-space: nowrap;
+  font-weight: normal;
+}
+
+input[type="radio"]:checked + label {
+  color: #5eead4;
+}
+
+input[type="radio"] {
+  display: none;
 }

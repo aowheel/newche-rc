@@ -1,6 +1,6 @@
 const Page = () => {
   return (
-    <div className="m-4 px-4 rounded bg-slate-100 text-slate-600">
+    <div className="px-4 rounded bg-slate-100 text-slate-600">
       <h1 className="my-2 text-center text-2xl">利用規約</h1>
     </div>
   );

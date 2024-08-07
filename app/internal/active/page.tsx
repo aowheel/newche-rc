@@ -1,26 +1,64 @@
 import Loading from "@/app/loading";
+import { auth } from "@/auth";
+import { LoadingDots } from "@/components/Common";
 import OverallSchedule from "@/components/OverallSchedule";
+import SetMode from "@/components/SetMode";
 import SetMonth from "@/components/SetMonth";
+import SevenDaysSchedule from "@/components/SevenDaysSchedule";
 import { Suspense } from "react";
+import { FaEarlybirds, FaRegCalendar, FaRegCalendarCheck } from "react-icons/fa6";
+import { FiCheckCircle, FiMinusCircle, FiXCircle } from "react-icons/fi";
 
-const Page = async ({
-  searchParams,
-}: {
+const Page = async ({ searchParams }: {
   searchParams?: {
-    start?: string;
-    end?: string;
+    month?: string;
+    mode?: string;
   };
 }) => {
-  const start = searchParams?.start;
-  const end = searchParams?.end;
-  const startKey = start || "";
-  const endKey = end || ""
+  const session = await auth();
+  const id = session?.user?.id || "";
+
+  const month = searchParams?.month;
+
+  const mode = searchParams?.mode;
 
   return (
     <>
-      <Suspense key={startKey + endKey} fallback={<Loading />}>
-        <OverallSchedule start={start} end={end} />
-      </Suspense>
+      <div className="w-full flex gap-x-8 snap-x snap-mandatory overflow-x-auto">
+        <div className="w-full flex flex-shrink-0 flex-col items-center gap-y-4 snap-always snap-center">
+          <div className="flex items-center justify-center rounded-lg bg-white">
+            <FaEarlybirds className="text-slate-900 text-4xl" />
+          </div>
+          <Suspense key={month} fallback={<Loading />}>
+            <SevenDaysSchedule userId={id} />
+          </Suspense>
+        </div>
+
+        <div className="w-full flex flex-shrink-0 flex-col items-center gap-y-4 snap-always snap-center">
+          {mode !== "edit" ?
+          <FaRegCalendar className="text-4xl text-white" /> :
+          <FaRegCalendarCheck className="text-4xl text-white" />}
+
+          {mode === "edit" &&
+          <div className="flex gap-x-6">
+            <div className="flex items-center text-green-100"><FiCheckCircle className="mr-2 text-xl" />参加</div>
+            <div className="flex items-center text-red-100"><FiXCircle className="mr-2 text-xl" />不参加</div>
+            <div className="flex items-center text-yellow-100"><FiMinusCircle className="mr-2 text-xl" />未定</div>
+          </div>}
+
+          <Suspense fallback={<Loading />}>
+            <OverallSchedule withAttendees={true} userId={id} month={month} mode={mode} />
+          </Suspense>
+
+          <SetMode />
+        </div>
+      </div>
+
+      {mode === "edit" &&
+      <div className="fixed w-screen bottom-0 flex items-center justify-center p-2 bg-teal-300 bg-opacity-75">
+        <span className="text-white">選択中<LoadingDots /></span>
+      </div>}
+      
       <SetMonth />
     </>
   );
