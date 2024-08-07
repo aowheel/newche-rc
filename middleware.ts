@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
   const period = request.cookies.get("period")?.value;
   if (isOnInternal) {
     if (!displayName) {
-      return NextResponse.redirect(new URL("/signin", request.url));
+      return NextResponse.redirect(new URL("/settings", request.url));
     } else {
       const intPeriod = z.coerce.number().int().safeParse(period);
       if (intPeriod.success) {
