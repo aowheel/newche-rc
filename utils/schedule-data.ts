@@ -49,6 +49,7 @@ export const getSchedule = async (month?: string) => {
 
 export const getSevenDaysSchedule = async () => {
   const currentDate = new Date();
+  currentDate.setTime(currentDate.getTime() - 9*60*60*1000);
   const gte = currentDate;
   const sevenDaysLater = new Date(currentDate);
   sevenDaysLater.setDate(currentDate.getDate() + 7);
